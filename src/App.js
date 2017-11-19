@@ -24,25 +24,28 @@ class App extends React.Component {
 //  }
 
 
-  makeid() {
-    var text = "";
-    var possible = "0123456789";
-    text += Math.floor(Math.random() * 101) + 100;
-    return text;
-  }
+//  makeid() {
+//    var text = "";
+//    var possible = "0123456789";
+//    text += Math.floor(Math.random() * 101) + 100;
+//    return text;
+//  }
 
 
   getName(e){
     this.setState({name:this.refs.textBox.value});
+    this.setState({name:"eiei"})
     this.setState({id: this.makeid()})
     this.onNavigateGame();
     e.preventDefault();
-//    this.performGetRequest();
-
   }
 
- onNavigateGame(){
-    this.props.history.push("/game/"+this.refs.textBox.value);
+ onNavigateGame(e){
+    if (this.refs.textBox.value == ""){
+        this.props.history.push("/game/Anonymous");
+    }
+    else{ this.props.history.push("/game/"+this.refs.textBox.value);}
+    e.preventDefault();
   }
 
 
@@ -57,7 +60,8 @@ class App extends React.Component {
           <div className="form">
             <form className="login-form">
               <input ref="textBox" type="text" placeholder="name"/>
-              <button onClick ={ (e) => this.getName(e)}> Play! </button>
+
+              <button onClick ={ (e) => this.onNavigateGame(e)}> Play! </button>
             </form>
           </div>
         </div>
