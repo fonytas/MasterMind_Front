@@ -3,14 +3,17 @@ import './App.css';
 import Game from './Game.js'
 import { Router, Route, Switch, browserHistory} from 'react-router'
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleClick = this.makeid.bind(this);
-    this.state = { random: '' };
+    this.state={name: "Anonymous", id: null};
+//    this.order={number: 100};
+//    this.handleClick = this.makeid.bind(this);
+//    this.state = { random: '' };
     this.isSelected =  false
   }
 
@@ -19,22 +22,44 @@ class App extends React.Component {
 //      this.props.history.push("/someNewPage");
 //   }
 
+  performGetRequest(){
+  console.log("performing get request")
+  console.log(this.state.inputfield)
+  var promise = axios.get("http://localhost:8080/login/"+this.state.name+this.state.id);
+  console.log("axios return : "+ promise)
+  }
 
-   getName(){
-    this.props.history.push("/game");
 
-   }
+
+
+//
   makeid() {
-      var text = "";
-      var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+    var text = "";
+    var possible = "0123456789";
 
-      for (var i = 0; i < 4; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    console.log("HI")
+    text += Math.floor(Math.random() * 101) + 100;
 
-    this.setState({random: this.state.random = text})
+//    for (var i = 0; i < 4; i++)
+//        text += possible.charAt(Math.floor(Math.random() * 10) + 1);
+////    console.log("HI")
+//        this.setState({random: this.state.random = text})
+    return text;
 
-    }
+
+  }
+  getName(e){
+
+//    console.log(this.makeid());
+//    var num = this.order + 1
+
+    this.setState({name:this.refs.textBox.value});
+    this.setState({id: this.makeid()})
+    e.preventDefault();
+    this.performGetRequest();
+
+
+
+  }
 
   render() {
 
@@ -48,19 +73,19 @@ class App extends React.Component {
         </header>
         <div className="login-page">
           <div className="form">
-             <form className="register-form" >
-              <input type="text" placeholder="name"/>
-              <div>
-                <p>Lobby ID:</p>
-                <textarea readonly id="code-content" className="lobby-code" ></textarea>
-              </div>
-               <button>create</button>
-               <p className="message">Already registered? <a href="#">Sign In</a></p>
-            </form>
+
 
             <form className="login-form">
-              <input type="text" placeholder="name"/>
-              <Link to='/game'><button>Play !</button></Link>
+
+              <input ref="textBox" type="text" placeholder="name"/>
+
+
+              <button onClick ={ (e) => this.getName(e)}> Play! </button>
+
+
+              <div> Hello,{this.state.name} </div>
+              <div> Hello,{this.state.name} </div>
+
             </form>
           </div>
         </div>
@@ -74,3 +99,4 @@ class App extends React.Component {
 //history
 
 export default App;
+//<Link to='/game'><button>Play !</button></Link>
