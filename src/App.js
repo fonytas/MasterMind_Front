@@ -24,7 +24,6 @@ class App extends React.Component {
 //  }
 
 
-
   makeid() {
     var text = "";
     var possible = "0123456789";
@@ -39,6 +38,7 @@ class App extends React.Component {
     this.onNavigateGame();
     e.preventDefault();
 //    this.performGetRequest();
+
   }
 
  onNavigateGame(){
@@ -48,7 +48,6 @@ class App extends React.Component {
 
   render() {
 
-    const isSelected = this.state.isSelected;
     return (
       <div className="App">
         <header className="App-header">
@@ -58,11 +57,12 @@ class App extends React.Component {
           <div className="form">
             <form className="login-form">
               <input ref="textBox" type="text" placeholder="name"/>
-              <button onClick ={ (e) => this.update(e)}> Play! </button>
+              <button onClick ={ (e) => this.getName(e)}> Play! </button>
             </form>
           </div>
         </div>
       </div>
+
     );
   }
 }
