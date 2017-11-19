@@ -10,9 +10,9 @@ import Game from './Game';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect,
   withRouter,
+
 } from 'react-router-dom'
 
 function MainApp(){
@@ -20,7 +20,7 @@ function MainApp(){
      <Router>
         <div>
           <Route path="/login" component={App} />
-          <Route path="/game" component={Game} />
+          <Route path="/game/:name" component={Game} />
         </div>
     </Router>
     )

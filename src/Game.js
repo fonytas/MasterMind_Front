@@ -3,6 +3,7 @@ import './App.css';
 import ReactDom from 'react-dom';
 
 
+
 //
 //randomColor() {
 //
@@ -29,7 +30,7 @@ class Game extends React.Component {
         return (
 
          <div className="Game">
-            <h1>Welcome to Master Mind Game, (name)</h1>
+            <h1>Welcome to Master Mind Game, {this.props.match.params.name}</h1>
 
            <div className="Button-Panel">
 
