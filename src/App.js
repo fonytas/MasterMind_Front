@@ -16,20 +16,20 @@ class App extends React.Component {
   }
 
 
-//  performGetRequest(){
-//  console.log("performing get request")
-//  console.log(this.state.name)
-//  var promise = axios.get("http://localhost:8080/login/"+this.state.name+this.state.id);
-//  console.log("axios return : "+ promise)
-//  }
+  performGetRequest(){
+  console.log("performing get request")
+  console.log(this.state.name)
+  var promise = axios.get("http://localhost:8080/login/"+this.state.name+this.makeid());
+  console.log("axios return : "+ promise)
+  }
 
 
-//  makeid() {
-//    var text = "";
-//    var possible = "0123456789";
-//    text += Math.floor(Math.random() * 101) + 100;
-//    return text;
-//  }
+  makeid() {
+    var text = "";
+    var possible = "0123456789";
+    text += Math.floor(Math.random() * 101) + 100;
+    return text;
+  }
 
 
   getName(e){
